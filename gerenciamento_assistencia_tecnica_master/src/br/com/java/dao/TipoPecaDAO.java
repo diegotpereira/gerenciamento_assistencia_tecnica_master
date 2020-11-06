@@ -51,12 +51,12 @@ public class TipoPecaDAO {
 			ArrayList<TipoPecaBEAN> listaTipoPecas = new ArrayList<>();
 			
 			while(resultados.next()) {
-				TipoPecaBEAN TP = new TipoPecaBEAN();
-				TP.setId(resultados.getInt("id_tipo_peca"));
-				TP.setNome(resultados.getString("nome"));
-				TP.setDescricao(resultados.getString("descricao"));
+				TipoPecaBEAN tipoPeca = new TipoPecaBEAN();
+				tipoPeca.setId(resultados.getInt("id_tipo_peca"));
+				tipoPeca.setNome(resultados.getString("nome"));
+				tipoPeca.setDescricao(resultados.getString("descricao"));
 				
-				listaTipoPecas.add(TP);
+				listaTipoPecas.add(tipoPeca);
 			}
 			return listaTipoPecas;
 		} catch (SQLException e) {

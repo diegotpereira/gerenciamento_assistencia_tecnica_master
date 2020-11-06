@@ -62,12 +62,12 @@ public class PecaDAO {
 				peca.setDescricao (RES.getString("descricao_peca"));
 				peca.setQuantidade(RES.getInt("quantidade_peca"));
 				
-				TipoPecaBEAN TP = new TipoPecaBEAN();
-				TP.setId(RES.getInt("id_tipo_peca"));
-				TP.setNome(RES.getString("nome_tipo_peca"));
-				TP.setDescricao(RES.getString("descricao_tipo_peca"));
+				TipoPecaBEAN tipoPeca = new TipoPecaBEAN();
+				tipoPeca.setId(RES.getInt("id_tipo_peca"));
+				tipoPeca.setNome(RES.getString("nome_tipo_peca"));
+				tipoPeca.setDescricao(RES.getString("descricao_tipo_peca"));
 				
-				peca.setTipoPeca(TP);
+				peca.setTipoPeca(tipoPeca);
 				
 				FabricanteBEAN FAB = new FabricanteBEAN();
 				FAB.setId      (RES.getInt("id_fabricante"));

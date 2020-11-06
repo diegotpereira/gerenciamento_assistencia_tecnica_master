@@ -7,6 +7,7 @@ public class FabricanteBEAN {
 	private String email;
 	private String telefone;
 	private String site;
+	
 	public int getId() {
 		return id;
 	}

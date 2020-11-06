@@ -16,21 +16,21 @@ import br.com.java.util.SessionUtil;
 @SessionScoped
 public class LoginController implements Serializable{
 	
-	private UsuarioBEAN user = new UsuarioBEAN();
+	private UsuarioBEAN usuario = new UsuarioBEAN();
 	private UsuarioDAO dao = new UsuarioDAO();
 	
 	public UsuarioBEAN getUsuario() {
-		return user;
+		return usuario;
 		
 	}
-	public void setUsuario (UsuarioBEAN user) {
-		this.user = user;
+	public void setUsuario (UsuarioBEAN usuario) {
+		this.usuario = usuario;
 	}
 	public String autenticarUsuario() {
-		UsuarioBEAN usuarioAutenticado = this.dao.autenticarUsuario(this.user);
+		UsuarioBEAN usuarioAutenticado = this.dao.autenticarUsuario(this.usuario);
 		if(usuarioAutenticado != null) {
 			HttpSession sessao = SessionUtil.getSession();
-			sessao.setAttribute("user", usuarioAutenticado);
+			sessao.setAttribute("usuario", usuarioAutenticado);
 			
 			FacesUtil.adicionarMensagemInfo("Bem-vindo, "+usuarioAutenticado.getNome()+"!");
 			

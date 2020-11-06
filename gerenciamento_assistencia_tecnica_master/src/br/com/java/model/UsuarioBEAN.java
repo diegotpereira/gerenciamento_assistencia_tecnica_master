@@ -9,6 +9,10 @@ public class UsuarioBEAN extends PessoaBEAN{
 	private Date data_nascimento;
 	
 	public CargoBEAN getCargo() {
+		
+		if (cargo ==null) {
+			cargo = new CargoBEAN();
+		}
 		return cargo;
 	}
 	public void setCargo(CargoBEAN cargo) {

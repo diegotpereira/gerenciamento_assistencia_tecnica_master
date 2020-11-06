@@ -1,5 +1,7 @@
 package br.com.java.model;
 
+import br.com.java.dao.EnderecoDAO;
+
 public class EnderecoBEAN {
 	
 	private int id;
@@ -10,6 +12,7 @@ public class EnderecoBEAN {
 	private String bairro;
 	private String complemento;
 	private int numero_propriedade;
+	
 	public int getId() {
 		return id;
 	}
@@ -57,5 +60,15 @@ public class EnderecoBEAN {
 	}
 	public void setNumero_propriedade(int numero_propriedade) {
 		this.numero_propriedade = numero_propriedade;
+	}
+	
+	public int cadastrarEndereco() {
+		EnderecoDAO dao = new EnderecoDAO();
+		return dao.cadastrarEndereco(this);
+	}
+	
+	public boolean deletarEndereco(int idEndereco) {
+		EnderecoDAO dao = new EnderecoDAO();
+		return dao.deletarEndereco(idEndereco);
 	}
 }

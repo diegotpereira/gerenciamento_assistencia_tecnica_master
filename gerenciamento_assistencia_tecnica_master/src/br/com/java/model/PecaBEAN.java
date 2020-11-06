@@ -9,6 +9,14 @@ public class PecaBEAN {
 	private int quantidade;
 	private TipoPecaBEAN tipoPeca;
 	private FabricanteBEAN fabricante;
+	
+	public PecaBEAN() {
+		this.tipoPeca = new TipoPecaBEAN();
+		this.fabricante = new FabricanteBEAN();
+		
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

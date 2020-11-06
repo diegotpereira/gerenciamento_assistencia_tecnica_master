@@ -18,7 +18,7 @@
 			<p:panel>
 				<f:facet name="header">
 					<h:outputText value="Lista de fabricantes" />
-					<p:commandButton value="Adicionar um novo fabricante" actionListener="#{fabricanteController.novo()}" update=":formCadastro:painelCadastro"
+					<p:commandButton value="Adicionar um novo fabricante" actionListener="#{fabricanteController.novo}" update=":formCadastro:painelCadastro"
 								oncomplete="PF('dialogoCadastro').show();" style="float: right;" />
 				</f:facet>
 				

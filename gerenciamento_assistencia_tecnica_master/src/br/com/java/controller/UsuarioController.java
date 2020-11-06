@@ -18,23 +18,23 @@ import br.com.java.util.FacesUtil;
 @ViewScoped
 public class UsuarioController {
 	
-    private UsuarioBEAN USER = new UsuarioBEAN();
+    private UsuarioBEAN usuario = new UsuarioBEAN();
 	private UsuarioDAO USERDAO = new UsuarioDAO();
 	private CargoDAO CARGODAO = new CargoDAO();
 	
 	@PostConstruct
 	public void init() {
-		UsuarioBEAN usuarioRecebido = (UsuarioBEAN) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("USER"); 
+		UsuarioBEAN usuarioRecebido = (UsuarioBEAN) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("usuario"); 
 		if(usuarioRecebido != null) {
-			this.USER = usuarioRecebido;
+			this.usuario = usuarioRecebido;
 		}
 	}
 	public UsuarioBEAN getUsuario() {
-		return USER;
+		return usuario;
 	}
 
-	public void setUsuario(UsuarioBEAN USER) {
-		this.USER = USER;
+	public void setUsuario(UsuarioBEAN usuario) {
+		this.usuario = usuario;
 	}
 	public ArrayList<CargoBEAN> listarCargos() {
 		return this.CARGODAO.listarCargos();
@@ -47,7 +47,7 @@ public class UsuarioController {
 	private boolean validarCamposCustom() {
 	
 		boolean validacaoAprovada = true;
-		if(this.USER.getTelefone_celular().equals("") && this.USER.getTelefone_fixo().equals("")) {
+		if(this.usuario.getTelefone_celular().equals("") && this.usuario.getTelefone_fixo().equals("")) {
 			FacesUtil.adicionarMensagemErro("Você precisa preencher pelo menos um campo de telefone");
 			validacaoAprovada = false;
 		}
@@ -57,7 +57,7 @@ public class UsuarioController {
 	
 	public String cadastrarUsuario() {
 		if(this.validarCamposCustom() == true) {	//Se passar na validação
-			if(this.USERDAO.cadastrarUsuario(this.USER) == true) {
+			if(this.USERDAO.cadastrarUsuario(this.usuario) == true) {
 				FacesUtil.adicionarMensagemInfo("Usuário cadastrado com sucesso!");
 				return("UsuarioListar.xhtml?faces-redirect=true");
 			}else {
@@ -68,9 +68,9 @@ public class UsuarioController {
 		return "";
 	}
 	public void excluirUsuario(ActionEvent evento) {
-		this.USER = (UsuarioBEAN) evento.getComponent().getAttributes().get("usuarioSelecionado");
+		this.usuario = (UsuarioBEAN) evento.getComponent().getAttributes().get("usuarioSelecionado");
 		
-		if(this.USERDAO.deletarUsuario(this.USER) == true) {
+		if(this.USERDAO.deletarUsuario(this.usuario) == true) {
 			FacesUtil.adicionarMensagemInfo("Usuário excluido com sucesso.");
 		} else {
 			FacesUtil.adicionarMensagemErro("Houve um erro ao tentar excluir o usuário.");
@@ -83,7 +83,7 @@ public class UsuarioController {
 	}
 	public String editarUsuario() {		
 		if(this.validarCamposCustom() == true) {
-			if(this.USERDAO.editarUsuario(this.USER) == true) {
+			if(this.USERDAO.editarUsuario(this.usuario) == true) {
 				FacesUtil.adicionarMensagemInfo("Usuário editado com sucesso!");
 				return("UsuarioListar.xhtml?faces-redirect=true");
 			}else {

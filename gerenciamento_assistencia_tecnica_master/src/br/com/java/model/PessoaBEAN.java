@@ -50,6 +50,10 @@ public abstract class PessoaBEAN {
 		this.telefone_fixo = telefone_fixo;
 	}
 	public EnderecoBEAN getEndereco() {
+		
+		if (endereco == null) {
+			endereco = new EnderecoBEAN();
+		}
 		return endereco;
 	}
 	public void setEndereco(EnderecoBEAN endereco) {

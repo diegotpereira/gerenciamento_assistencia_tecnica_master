@@ -17,17 +17,20 @@ public class FabricanteDAO {
 	public FabricanteDAO() {
 		this.conexaodb = new ConexaoBD();
 	}
-	public boolean cadastrarFabricante(FabricanteBEAN fab) {
+	public boolean cadastrarFabricante(FabricanteBEAN fabricante) {
+		    
+		   this.conexao = this.conexaodb.getConnection();
 		
 		try {
-			this.conexao = this.conexaodb.getConnection();
-			String SQL = "INSERT INTO FABRICANTES (nome, email, telefone, site) VALUES (?,?,?,?";
+			
+			String SQL = "INSERT INTO fabricantes (nome, email, telefone, site) VALUES (?,?,?,?)";
 			PreparedStatement PS = this.conexao.prepareStatement(SQL);
 			
-			PS.setString(1, fab.getNome());
-			PS.setString(2, fab.getEmail());
-			PS.setString(3, fab.getTelefone());
-			PS.setString(4, fab.getSite());
+			PS.setString(1, fabricante.getNome());
+			
+			PS.setString(2, fabricante.getEmail());
+			PS.setString(3, fabricante.getTelefone());
+			PS.setString(4, fabricante.getSite());
 			PS.executeUpdate();
 			
 			return true;
@@ -51,14 +54,14 @@ public class FabricanteDAO {
 			ArrayList<FabricanteBEAN> listaFabricantes = new ArrayList<>();
 			
 			while (RS.next()) {
-				FabricanteBEAN fab = new FabricanteBEAN();
-				fab.setId      (RS.getInt("id_fabricante"));
-				fab.setNome    (RS.getString("nome"));
-				fab.setEmail   (RS.getString("email"));
-				fab.setTelefone(RS.getString("telefone"));
-				fab.setSite    (RS.getString("site"));
+				FabricanteBEAN fabricante = new FabricanteBEAN();
+				fabricante.setId      (RS.getInt("id_fabricante"));
+				fabricante.setNome    (RS.getString("nome"));
+				fabricante.setEmail   (RS.getString("email"));
+				fabricante.setTelefone(RS.getString("telefone"));
+				fabricante.setSite    (RS.getString("site"));
 				
-				listaFabricantes.add(fab);
+				listaFabricantes.add(fabricante);
 			}
 			
 			return listaFabricantes;
@@ -71,18 +74,18 @@ public class FabricanteDAO {
 		}
 		return null;
 	}
-	public boolean editarFabricantes (FabricanteBEAN fab) {
+	public boolean editarFabricantes (FabricanteBEAN fabricante) {
 		
 		try {
 			this.conexao = this.conexaodb.getConnection();
 			String SQL = "UPDATE fabricantes SET nome = ?, email = ?, telefone = ?, site = ? WHERE id_fabricante = ?";
 			PreparedStatement PS = this.conexao.prepareStatement(SQL);
 			
-			PS.setString(1, fab.getNome());
-			PS.setString(2, fab.getEmail());
-			PS.setString(3, fab.getTelefone());
-			PS.setString(4, fab.getSite());
-			PS.setInt   (5, fab.getId());
+			PS.setString(1, fabricante.getNome());
+			PS.setString(2, fabricante.getEmail());
+			PS.setString(3, fabricante.getTelefone());
+			PS.setString(4, fabricante.getSite());
+			PS.setInt   (5, fabricante.getId());
 			
 			PS.executeUpdate();
 			return true;

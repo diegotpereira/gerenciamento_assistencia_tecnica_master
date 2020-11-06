@@ -31,17 +31,17 @@ public class EnderecoDAO {
 			ResultSet RES = PS.executeQuery();
 			
 			if (RES.next()) {
-				EnderecoBEAN END = new EnderecoBEAN();
-				END.setId(RES.getInt("id_endereco"));
-				END.setCep(RES.getString("cep"));
-				END.setEstado(RES.getString("estado"));
-				END.setCidade(RES.getString("cidade"));
-				END.setLogradouro(RES.getString("logradouro"));
-				END.setBairro(RES.getString("bairro"));
-				END.setComplemento(RES.getString("complemento"));
-				END.setNumero_propriedade(RES.getInt("numero_propriedade"));
+				EnderecoBEAN endereco = new EnderecoBEAN();
+				endereco.setId(RES.getInt("id_endereco"));
+				endereco.setCep(RES.getString("cep"));
+				endereco.setEstado(RES.getString("estado"));
+				endereco.setCidade(RES.getString("cidade"));
+				endereco.setLogradouro(RES.getString("logradouro"));
+				endereco.setBairro(RES.getString("bairro"));
+				endereco.setComplemento(RES.getString("complemento"));
+				endereco.setNumero_propriedade(RES.getInt("numero_propriedade"));
 				
-				return END;
+				return endereco;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -53,7 +53,7 @@ public class EnderecoDAO {
 		return null;
 	}
 	
-	public int cadastrarEndereco (EnderecoBEAN END) {
+	public int cadastrarEndereco (EnderecoBEAN endereco) {
 		int idEndereco = 0;
 		
 		try {
@@ -61,13 +61,13 @@ public class EnderecoDAO {
 			
 			String SQL = "INSERT INTO ENDERECOS (cep, estado, cidade, logradouro, bairro, complemento, numero_propriedade) VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement PS = this.conexao.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-			PS.setString(1, END.getCep());
-			PS.setString(2, END.getEstado());
-			PS.setString(3, END.getCidade());
-			PS.setString(4, END.getLogradouro());
-			PS.setString(5, END.getBairro());
-			PS.setString(6, END.getComplemento());
-			PS.setInt   (7, END.getNumero_propriedade());
+			PS.setString(1, endereco.getCep());
+			PS.setString(2, endereco.getEstado());
+			PS.setString(3, endereco.getCidade());
+			PS.setString(4, endereco.getLogradouro());
+			PS.setString(5, endereco.getBairro());
+			PS.setString(6, endereco.getComplemento());
+			PS.setInt   (7, endereco.getNumero_propriedade());
 			
 			PS.executeUpdate();	
 			
