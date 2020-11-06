@@ -6,6 +6,7 @@ public class CargoBEAN {
 	private String nome;
 	private String descricao;
 	private float salario;
+	
 	public int getId() {
 		return id;
 	}
