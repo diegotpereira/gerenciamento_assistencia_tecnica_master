@@ -23,7 +23,7 @@ public class CargoDAO {
 		
 		try {
 			this.conexao = conexaobd.getConnection();
-			CargoBEAN CB = new CargoBEAN();
+			CargoBEAN cargo = new CargoBEAN();
 			
 			String SQL = "SELECT * FROM CARGOS WHERE id_cargo = ?";
 			PreparedStatement PS = this.conexao.prepareStatement(SQL);
@@ -32,12 +32,12 @@ public class CargoDAO {
 			ResultSet RES = PS.executeQuery();
 			
 			if (RES.next()) {
-				CB.setId       (RES.getInt("id_cargo"));
-				CB.setNome     (RES.getString("nome"));
-				CB.setDescricao(RES.getString("descricao"));
-				CB.setSalario  (RES.getFloat("salario"));
+				cargo.setId       (RES.getInt("id_cargo"));
+				cargo.setNome     (RES.getString("nome"));
+				cargo.setDescricao(RES.getString("descricao"));
+				cargo.setSalario  (RES.getFloat("salario"));
 				
-				return CB;
+				return cargo;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -58,12 +58,12 @@ public class CargoDAO {
 			ResultSet  RES = PS.executeQuery();
 			
 			while (RES.next()) {
-				CargoBEAN CB = new CargoBEAN();
-				CB.setId(RES.getInt("id_cargo"));
-				CB.setNome(RES.getString("nome"));
-				CB.setDescricao(RES.getString("descricao"));
-				CB.setSalario(RES.getFloat("salario"));
-				listaCargos.add(CB);
+				CargoBEAN cargo = new CargoBEAN();
+				cargo.setId(RES.getInt("id_cargo"));
+				cargo.setNome(RES.getString("nome"));
+				cargo.setDescricao(RES.getString("descricao"));
+				cargo.setSalario(RES.getFloat("salario"));
+				listaCargos.add(cargo);
 				
 				return listaCargos;
 			}
